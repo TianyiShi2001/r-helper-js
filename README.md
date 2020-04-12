@@ -24,26 +24,27 @@ Rcall("fun")
 // --> fun()
 
 // construct R function call with different primitive types"
-Rcall("fun", 114, 5.14, true, false, ["foo", "bar"], ["baz", undefined])
+Rcall("fun", [114, 5.14, true, false], { foo: "bar", baz: undefined })
 // --> fun(114,5.14,TRUE,FALSE,foo="bar",baz=NA)
 
 // construct nested call
-Rcall("foo", 1, Rcall("bar", "two", Rcall("baz", true)))
+Rcall("foo", [1, Rcall("bar", ["two", Rcall("baz", [true])])])
 // --> foo(1,bar("two",baz(TRUE)))
 ```
 
-### Definition of `Rcall()`
+### Signature of `Rcall()`
 
 ```typescript
-Rcall(Rfunction: string, ...Array< args: RArg | RKwarg | RCall >)
+function Rcall(Rfunction, args?: RArgs, kwargs?: RKwargs): RCall {/*...*/}
 ```
 
 where:
 
 ```typescript
 type RCall = string; // matches /.+\(.*\)/
-type RArg = string | number | boolean | undefined;
-type RKwarg = [string, RArg | RCall];
+type RArg = string | number | boolean | undefined | RCall;
+type RArgs = Array<RArg>;
+type RKwargs = { [k: string]: RArg };
 ```
 
 ## `Rscript`
@@ -51,6 +52,6 @@ type RKwarg = [string, RArg | RCall];
 Make an Rscript command ready for execution in shell:
 
 ```typescript
-Rscript(Rcall("foo", 1, Rcall("bar", "two", Rcall("baz", true))))
+Rscript(Rcall("foo", [1, Rcall("bar", ["two", Rcall("baz", [true])])]))
 // Rscript -e 'foo(1,bar("two",baz(TRUE)))'
 ```
