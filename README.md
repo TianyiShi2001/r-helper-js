@@ -2,6 +2,16 @@
 
 Helper functions for calling R in Node.js
 
+## Installation
+
+```bash
+npm i r-helper
+```
+
+```typescript
+import { Rcall, Rscript } from 'r-helper';
+```
+
 ## Demos
 
 ## `Rcall()`
