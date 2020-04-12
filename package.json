@@ -1,6 +1,6 @@
 {
   "name": "r-helper",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Helper functions for executing Rscripts in Node.js",
   "main": "lib/index.js",
   "scripts": {
