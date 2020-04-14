@@ -1,7 +1,7 @@
-type RCall = string; // matches /.+\(.*\)/
-type RArg = string | number | boolean | undefined | RCall;
-type RArgs = Array<RArg>;
-type RKwargs = { [k: string]: RArg };
+export type RCall = string; // matches /.+\(.*\)/
+export type RArg = string | number | boolean | undefined | RCall;
+export type RArgs = Array<RArg>;
+export type RKwargs = { [k: string]: RArg };
 function jsArgTypeToRLiteral(arg) {
   switch (typeof arg) {
     case "string":

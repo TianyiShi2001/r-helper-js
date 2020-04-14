@@ -8,7 +8,8 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "outDir": "lib",
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true
   },
-  "include": ["src/**/*", "src/index.ts"]
+  "include": ["src/**/*"]
 }
